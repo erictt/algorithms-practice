@@ -2,68 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b786e4a-d7fd-4f9f-b4b3-5e357a1286c9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algs4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algs4/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/algs4/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/StdIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/StdIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/QuickFindUF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/QuickFindUF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/QuickUnionUF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/QuickUnionUF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/UnionFind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/UnionFind.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/WeightedQuickUnionUF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/WeightedQuickUnionUF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/Percolation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/Percolation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/PercolationStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/PercolationStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/CREDITS" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/CREDITS" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/InteractivePercolationVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/InteractivePercolationVisualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/PercolationVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/PercolationVisualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/greeting57.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/greeting57.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/greeting57.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/greeting57.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/heart25.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/heart25.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/heart25.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/heart25.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input1-no.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input1-no.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input1-no.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input1-no.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input10-no.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input10-no.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input10-no.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input10-no.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input10.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input10.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input10.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input2-no.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input2-no.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input2-no.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input2-no.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input20.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input20.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input20.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input20.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input50.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input50.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input50.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input50.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input6.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input7.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input7.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input8-dups.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input8-dups.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input8-dups.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input8-dups.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input8-no.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input8-no.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input8-no.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input8-no.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input8.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/input8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/input8.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/jerry47.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/jerry47.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/jerry47.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/jerry47.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/sedgewick60.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/sedgewick60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/sedgewick60.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/sedgewick60.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/snake101.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/snake101.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/snake101.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/snake101.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/snake13.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/snake13.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/snake13.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/snake13.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/wayne98.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/wayne98.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/week1/assignment/percolation/wayne98.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week1/assignment/percolation/wayne98.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -84,7 +25,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gitignore" value="1" />
+          <entry key="gitignore" value="2" />
           <entry key="iml" value="1" />
           <entry key="java" value="1" />
           <entry key="xml" value="2" />
@@ -94,7 +35,7 @@
         <counts>
           <entry key="IDEA_MODULE" value="1" />
           <entry key="JAVA" value="1" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="PLAIN_TEXT" value="2" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -124,11 +65,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algs4/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+            <state relative-caret-position="165">
+              <caret line="11" column="5" lean-forward="true" selection-end-line="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="885">
+              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
             </state>
           </provider>
         </entry>
@@ -155,12 +105,13 @@
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/algs4" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/algs4/.gitignore" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -219,55 +170,7 @@
             <path>
               <item name="algorithms-practice" type="b2602c69:ProjectViewProjectNode" />
               <item name="algorithms-practice" type="462c0819:PsiDirectoryNode" />
-              <item name="algs4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="algorithms-practice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="algorithms-practice" type="462c0819:PsiDirectoryNode" />
-              <item name="algs4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="algorithms-practice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="algorithms-practice" type="462c0819:PsiDirectoryNode" />
-              <item name="algs4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="algorithms-practice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="algorithms-practice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="algorithms-practice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="algorithms-practice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="algorithms-practice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="algorithms-practice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="algorithms-practice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="algorithms-practice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="week1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="algorithms-practice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="algorithms-practice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -277,7 +180,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538861832193" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538861986346" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -394,8 +297,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/algs4/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+        <state relative-caret-position="165">
+          <caret line="11" column="5" lean-forward="true" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
         </state>
       </provider>
     </entry>
