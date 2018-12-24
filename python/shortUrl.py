@@ -8,6 +8,7 @@ Created on Tue Dec 11 09:53:01 2018
 
 BASE62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+
 def encode(num, alphabet=BASE62):
     """Encode a positive number in Base X
 
@@ -24,6 +25,7 @@ def encode(num, alphabet=BASE62):
         arr.append(alphabet[rem])
     arr.reverse()
     return ''.join(arr)
+
 
 def decode(string, alphabet=BASE62):
     """Decode a Base X encoded string into the number
@@ -43,6 +45,7 @@ def decode(string, alphabet=BASE62):
         idx += 1
 
     return num
+
 
 shorted = encode(100)
 print(shorted)
