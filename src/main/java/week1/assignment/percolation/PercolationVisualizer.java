@@ -17,8 +17,8 @@
  ******************************************************************************/
 package week1.assignment.percolation;
 
-import algs4.In;
-import algs4.StdDraw;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdDraw;
 import week1.assignment.Percolation;
 
 import java.awt.*;
