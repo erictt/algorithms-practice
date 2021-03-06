@@ -12,8 +12,8 @@
  ******************************************************************************/
 package week1.assignment.percolation;
 
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdOut;
+import algs4.StdDraw;
+import algs4.StdOut;
 import week1.assignment.Percolation;
 
 public class InteractivePercolationVisualizer {

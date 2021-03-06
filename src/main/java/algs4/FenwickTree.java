@@ -8,9 +8,6 @@
 
 package algs4;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
  * Created by ricardodpsx@gmail.com on 4/01/15.
  * <p>

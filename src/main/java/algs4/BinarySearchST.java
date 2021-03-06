@@ -152,18 +152,18 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
      * @throws IllegalArgumentException if {@code key} is {@code null}
      */
     public int rank(Key key) {
-        if (key == null) throw new IllegalArgumentException("argument to rank() is null"); 
+        if (key == null) throw new IllegalArgumentException("argument to rank() is null");
 
-        int lo = 0, hi = n-1; 
-        while (lo <= hi) { 
-            int mid = lo + (hi - lo) / 2; 
+        int lo = 0, hi = n-1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
             int cmp = key.compareTo(keys[mid]);
-            if      (cmp < 0) hi = mid - 1; 
-            else if (cmp > 0) lo = mid + 1; 
-            else return mid; 
-        } 
+            if      (cmp < 0) hi = mid - 1;
+            else if (cmp > 0) lo = mid + 1;
+            else return mid;
+        }
         return lo;
-    } 
+    }
 
 
 
