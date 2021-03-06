@@ -1,8 +1,8 @@
 package week4;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.MinPQ;
+import algs4.In;
+import algs4.StdOut;
+import algs4.MinPQ;
 
 import java.util.Comparator;
 import java.util.LinkedList;
