@@ -1,8 +1,8 @@
 package week1.assignment;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+import algs4.StdOut;
+import algs4.StdRandom;
+import algs4.WeightedQuickUnionUF;
 
 public class Percolation {
 
