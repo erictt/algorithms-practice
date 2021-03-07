@@ -1,9 +1,9 @@
 package week5;
 
-import algs4.In;
-import algs4.Point2D;
-import algs4.RectHV;
-import algs4.StdOut;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.RectHV;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Set;
 import java.util.TreeSet;

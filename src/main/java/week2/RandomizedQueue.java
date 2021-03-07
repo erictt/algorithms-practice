@@ -1,3 +1,5 @@
+package week2;
+
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -76,7 +78,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         int end;
 
         public Iter() {
-            int start = StdRandom.uniform(size);
+            int start;
+            if (size == 0)  start = 0;
+            else start = StdRandom.uniform(size);
             index = start;
             end = size + start;
         }
@@ -89,7 +93,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         @Override
         public Item next() {
-            if (index > end) throw new NoSuchElementException();
+            if (index >= end) throw new NoSuchElementException();
             Item item = items[index % size];
             index++;
             return item;
@@ -104,14 +108,17 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         int n = 10;
         RandomizedQueue<Integer> queue = new RandomizedQueue<Integer>();
+        Iterator<Integer> ite = queue.iterator();
         for (int i = 0; i < n; i++)
             queue.enqueue(i);
-        for (int i = 0; i < 5; i++)
-            queue.dequeue();
+//        for (int i = 0; i < 5; i++)
+//            queue.dequeue();
         for (int a : queue) {
-            for (int b : queue)
-                StdOut.print(a + "-" + b + " ");
-            StdOut.println();
+            StdOut.print(a + " ");
+        }
+        StdOut.println();
+        for (int b : queue) {
+            StdOut.print(b + " ");
         }
     }
 }
