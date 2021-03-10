@@ -19,13 +19,23 @@ public class FastCollinearPoints {
         // make sure the loop start with the bottom
         Arrays.sort(points);
 
+        // check null and duplicated points
+        for (int i = 0; i < points.length; i++) {
+            if (points[i] == null) throw new IllegalArgumentException();
+            if (i < points.length - 1 && points[i].compareTo(points[i+1]) == 0) throw new IllegalArgumentException();
+        }
+
         int segIndex = 0;
         // loop in points
         // start with index 0, create lineSegment with all the other points and sort the lineSegment
-        for (int i = 0; i < points.length - 3; i++) {
-            Point[] slopeToI = new Point[points.length - i - 1];
-            for (int j = 0; j < slopeToI.length; j++) {
-                slopeToI[j] = points[i + 1 + j];
+        for (int i = 0; i < points.length; i++) {
+            Point[] slopeToI = new Point[points.length - 1];
+            int j = 0;
+            int bump = 0;
+            while (j < points.length - 1) {
+                if (j == i) bump = 1;
+                slopeToI[j] = points[j + bump];
+                j++;
             }
             Arrays.sort(slopeToI, points[i].slopeOrder());
             int count = 1;
@@ -36,8 +46,8 @@ public class FastCollinearPoints {
                     continue;
                 }
                 if (count >= 3) {
-                    if (i < 1 || points[i-1].slopeOrder().compare(points[i], slopeToI[k-1]) != 0) {
-                        if (segIndex == lineSegments.length) resizeSegments();
+                    if (segIndex == lineSegments.length) resizeSegments();
+                    if (points[i].compareTo(slopeToI[k-1]) < 0 && points[i].compareTo(slopeToI[k-count]) < 0) {
                         lineSegments[segIndex++] = new LineSegment(points[i], slopeToI[k-1]);
                     }
                 }
@@ -46,9 +56,9 @@ public class FastCollinearPoints {
             }
 
             if (count >= 3) {
-                if (i < 1 || points[i-1].slopeOrder().compare(points[i], slopeToI[slopeToI.length - 1]) != 0) {
-                    if (segIndex == lineSegments.length) resizeSegments();
-                    lineSegments[segIndex++] = new LineSegment(points[i], slopeToI[slopeToI.length - 1]);
+                if (segIndex == lineSegments.length) resizeSegments();
+                if (points[i].compareTo(slopeToI[slopeToI.length-1]) < 0 && points[i].compareTo(slopeToI[slopeToI.length-count]) < 0) {
+                    lineSegments[segIndex++] = new LineSegment(points[i], slopeToI[slopeToI.length-1]);
                 }
             }
         }

@@ -111,8 +111,6 @@ public class Point implements Comparable<Point> {
 
         @Override
         public int compare(Point q1, Point q2) {
-            if (q1 == null || q2 == null) throw new IllegalArgumentException();
-            if (q1.x == q2.x && q1.y == q2.y) throw new IllegalArgumentException();
             double q1slope = p.slopeTo(q1);
             double q2slope = p.slopeTo(q2);
             if (q1slope == q2slope) return 0;

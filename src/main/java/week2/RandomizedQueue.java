@@ -108,7 +108,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         int n = 10;
         RandomizedQueue<Integer> queue = new RandomizedQueue<Integer>();
-        Iterator<Integer> ite = queue.iterator();
         for (int i = 0; i < n; i++)
             queue.enqueue(i);
 //        for (int i = 0; i < 5; i++)
