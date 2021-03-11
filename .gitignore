@@ -43,7 +43,7 @@ tmp/
 .cproject
 
 # IntelliJ project files
-*.iml
+# *.iml
 *.iws
 *.ipr
 .idea
