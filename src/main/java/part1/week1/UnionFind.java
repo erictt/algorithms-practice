@@ -1,7 +1,8 @@
 package part1.week1;
 
-import common.StdIn;
+import edu.princeton.cs.algs4.StdIn;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -54,7 +55,7 @@ public class UnionFind {
   public static void main(String[] args) {
     Scanner sc = null;
     try {
-      sc = new Scanner(StdIn.getDataFile("mediumUF.txt"));
+      sc = new Scanner(new File("mediumUF.txt"));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }

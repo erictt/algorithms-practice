@@ -1,7 +1,8 @@
 package part1.week1;
 
-import common.StdIn;
+import edu.princeton.cs.algs4.StdIn;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -40,7 +41,7 @@ public class QuickUnionUF {
     Scanner sc = null;
     try {
 //      sc = new Scanner(StdIn.getDataFile("mediumUF.txt"));
-      sc = new Scanner(StdIn.getDataFile("largeUF.txt"));
+      sc = new Scanner(new File("largeUF.txt"));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }

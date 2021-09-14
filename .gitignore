@@ -57,3 +57,6 @@ atlassian-ide-plugin.xml
 
 # files intended to be ignored
 *IGNORE
+
+# test files
+src/main/java/part2/week1/wordnet
