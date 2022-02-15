@@ -1,3 +1,7 @@
-Practice for course: https://www.coursera.org/learn/algorithms-part1/home/welcome
+Practice for courses: 
+- https://www.coursera.org/learn/algorithms-part1
+- https://www.coursera.org/learn/algorithms-part2
 
-Note: https://github.com/erictt/computer-science-learning/tree/master/algorithms-1
+Notes: 
+- https://github.com/erictt/computer-science-learning/tree/master/algorithms-1
+- https://github.com/erictt/computer-science-learning/tree/master/algorithms-2
