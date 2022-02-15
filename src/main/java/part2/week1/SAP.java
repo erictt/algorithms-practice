@@ -1,7 +1,7 @@
 package part2.week1;
 
+import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
-import edu.princeton.cs.algs4.DirectedCycle;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
@@ -13,7 +13,6 @@ public class SAP {
 
     private static final int INFINITY = Integer.MAX_VALUE;
     private final Digraph digraph;
-    private DirectedCycle cycle;
 
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G) {
@@ -74,58 +73,7 @@ public class SAP {
         return ancestor == INFINITY ? -1 : ancestor;
     }
 
-//    private int[] bfs(int w, int v) {
-//        boolean[] markedW = new boolean[digraph.V()];
-//        boolean[] markedV = new boolean[digraph.V()];
-//        int[] distToW = new int[digraph.V()];
-//        int[] distToV = new int[digraph.V()];
-//        if (w == v) return new int[]{v, 0};
-//        Queue<Integer> qW = new Queue<>();
-//        Queue<Integer> qV = new Queue<>();
-//        markedW[w] = true;
-//        markedV[v] = true;
-//        distToW[w] = 0;
-//        distToV[v] = 0;
-//        qW.enqueue(w);
-//        qV.enqueue(v);
-//        boolean flag = false;
-//        int[] candidate = {-1, -1};
-//        while (!qW.isEmpty() || !qV.isEmpty()) {
-//            Queue<Integer> q = null;
-//            boolean[] marked = null;
-//            int[] distTo = null;
-//
-//            if ((!flag && !qW.isEmpty()) || qV.isEmpty()) {
-//                flag = true;
-//                q = qW;
-//                marked = markedW;
-//                distTo = distToW;
-//            } else if (!qV.isEmpty()) {
-//                flag = false;
-//                q = qV;
-//                marked = markedV;
-//                distTo = distToV;
-//            }
-//            if (q == null || q.isEmpty()) {
-//                return new int[]{-1, -1};
-//            }
-//            int s = q.dequeue();
-//            if (markedW[s] && markedV[s]) {
-//                if (candidate[1] == -1 || candidate[1] > distToV[s] + distToW[s]) {
-//                    candidate = new int[]{s, distToV[s] + distToW[s]};
-//                }
-//            }
-//            for (int i : digraph.adj(s)) {
-//                if (!marked[i]) {
-//                    distTo[i] = distTo[s] + 1;
-//                    marked[i] = true;
-//                    q.enqueue(i);
-//                }
-//            }
-//        }
-//        return candidate;
-//    }
-
+    // method 1: loop both sources at the same time
     private int[] bfs(Iterable<Integer> sourcesW, Iterable<Integer> sourcesV) {
         boolean[] markedW = new boolean[digraph.V()];
         boolean[] markedV = new boolean[digraph.V()];
@@ -181,6 +129,49 @@ public class SAP {
         }
         return candidate;
     }
+
+    // method 2: use BreadthFirstDirectedPaths to mark one source, and then loop the other one
+//    private int[] bfs(Iterable<Integer> sourcesW, Iterable<Integer> sourcesV) {
+//
+//        int[] candidate = {-1, -1};
+//        if (!sourcesV.iterator().hasNext() || !sourcesW.iterator().hasNext()) {
+//            return candidate;
+//        }
+//        BreadthFirstDirectedPaths pathW = new BreadthFirstDirectedPaths(this.digraph, sourcesW);
+//        boolean[] markedV = new boolean[digraph.V()];
+//        int[] distToV = new int[digraph.V()];
+//
+//        Queue<Integer> qV = new Queue<>();
+//
+//        for (int s : sourcesV) {
+//            // same concern as in the loop.
+//            // one result doesn't mean it's the shortest one.
+//            if (pathW.hasPathTo(s)) candidate = new int[]{s, pathW.distTo(s)};
+//            markedV[s] = true;
+//            distToV[s] = 0;
+//            qV.enqueue(s);
+//        }
+//
+//        while (!qV.isEmpty()) {
+//            int s = qV.dequeue();
+//            // don't return when finding the first one, due to certain situations
+//            // e.g. 1 0, 1 2, 2 3, 3 4, 4 5, 5 0 and check 3 and 1 (digraph2.txt)
+//            // it's possible we get distance 4 at first, but the shortest is 2
+//            if (pathW.hasPathTo(s) && markedV[s]) {
+//                if (candidate[1] == -1 || candidate[1] > (distToV[s] + pathW.distTo(s))) {
+//                    candidate = new int[]{s, distToV[s] + pathW.distTo(s)};
+//                }
+//            }
+//            for (int i : digraph.adj(s)) {
+//                if (!markedV[i]) {
+//                    distToV[i] = distToV[s] + 1;
+//                    markedV[i] = true;
+//                    qV.enqueue(i);
+//                }
+//            }
+//        }
+//        return candidate;
+//    }
 
     public static void main(String[] args) {
         In in = new In(args[0]);
