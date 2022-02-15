@@ -2,6 +2,8 @@ package part2.week1;
 
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,7 +55,7 @@ public class WordNet {
 
     // returns all WordNet nouns
     public Iterable<String> nouns() {
-        return synsets;
+        return synsetNounMap.keySet();
     }
 
     // is the word a WordNet noun?
@@ -78,5 +80,16 @@ public class WordNet {
 
     private Iterable<Integer> findIds(String noun) {
         return synsetNounMap.get(noun);
+    }
+
+    public static void main(String[] args) {
+        WordNet wordnet = new WordNet(args[0], args[1]);
+        while (!StdIn.isEmpty()) {
+            String v = StdIn.readString();
+            String w = StdIn.readString();
+            int length   = wordnet.distance(v, w);
+            String ancestor = wordnet.sap(v, w);
+            StdOut.printf("length = %d, ancestor = %s\n", length, ancestor);
+        }
     }
 }

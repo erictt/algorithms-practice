@@ -1,6 +1,7 @@
 package part2.week1;
 
 import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.DirectedCycle;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
@@ -12,11 +13,13 @@ public class SAP {
 
     private static final int INFINITY = Integer.MAX_VALUE;
     private final Digraph digraph;
+    private DirectedCycle cycle;
 
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G) {
         // this will make the diagraph immutable
         digraph = new Digraph(G);
+        // TODO miss checking if there is a cycle
     }
 
     private void validateVertex(int v) {
