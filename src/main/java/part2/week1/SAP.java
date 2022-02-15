@@ -6,6 +6,8 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdIn;
 
+import java.util.ArrayList;
+
 public class SAP {
 
     private static final int INFINITY = Integer.MAX_VALUE;
@@ -13,7 +15,8 @@ public class SAP {
 
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G) {
-        digraph = G;
+        // this will make the diagraph immutable
+        digraph = new Digraph(G);
     }
 
     private void validateVertex(int v) {
@@ -21,15 +24,22 @@ public class SAP {
     }
 
     private void validateVertex(Iterable<Integer> v) {
-        for (int i: v)
+        if (v == null) throw new IllegalArgumentException();
+        for (Integer i: v) {
+            if (i == null) throw new IllegalArgumentException();
             validateVertex(i);
+        }
     }
 
     // length of shortest ancestral path between v and w; -1 if no such path
     public int length(int v, int w) {
         validateVertex(v);
         validateVertex(w);
-        int length = bfs(w, v)[1];
+        ArrayList<Integer> ws = new ArrayList<>();
+        ArrayList<Integer> vs = new ArrayList<>();
+        ws.add(w);
+        vs.add(v);
+        int length = bfs(ws, vs)[1];
         return length == INFINITY ? -1 : length;
     }
 
@@ -37,7 +47,11 @@ public class SAP {
     public int ancestor(int v, int w) {
         validateVertex(v);
         validateVertex(w);
-        int ancestor = bfs(w, v)[0];
+        ArrayList<Integer> ws = new ArrayList<>();
+        ArrayList<Integer> vs = new ArrayList<>();
+        ws.add(w);
+        vs.add(v);
+        int ancestor = bfs(ws, vs)[0];
         return ancestor == INFINITY ? -1 : ancestor;
     }
 
@@ -57,56 +71,57 @@ public class SAP {
         return ancestor == INFINITY ? -1 : ancestor;
     }
 
-    private int[] bfs(int w, int v) {
-        boolean[] markedW = new boolean[digraph.V()];
-        boolean[] markedV = new boolean[digraph.V()];
-        int[] distToW = new int[digraph.V()];
-        int[] distToV = new int[digraph.V()];
-        if (w == v) return new int[]{v, 0};
-        Queue<Integer> qW = new Queue<>();
-        Queue<Integer> qV = new Queue<>();
-        markedW[w] = true;
-        markedV[v] = true;
-        distToW[w] = 0;
-        distToV[v] = 0;
-        qW.enqueue(w);
-        qV.enqueue(v);
-        boolean flag = false;
-        int[] candidate = new int[]{-1, -1};
-        while (!qW.isEmpty() || !qV.isEmpty()) {
-            Queue<Integer> q = null;
-            boolean[] marked = null;
-            int[] distTo = null;
-            if ((!flag && !qW.isEmpty()) || qV.isEmpty()) {
-                flag = true;
-                q = qW;
-                marked = markedW;
-                distTo = distToW;
-            } else if (!qV.isEmpty()) {
-                flag = false;
-                q = qV;
-                marked = markedV;
-                distTo = distToV;
-            }
-            if (q == null || q.isEmpty()) {
-                return new int[]{-1, -1};
-            }
-            int s = q.dequeue();
-            if (markedW[s] && markedV[s]) {
-                if (candidate[1] == -1 || candidate[1] > distToV[s] + distToW[s]) {
-                    candidate = new int[]{s, distToV[s] + distToW[s]};
-                }
-            }
-            for (int i : digraph.adj(s)) {
-                if (!marked[i]) {
-                    distTo[i] = distTo[s] + 1;
-                    marked[i] = true;
-                    q.enqueue(i);
-                }
-            }
-        }
-        return candidate;
-    }
+//    private int[] bfs(int w, int v) {
+//        boolean[] markedW = new boolean[digraph.V()];
+//        boolean[] markedV = new boolean[digraph.V()];
+//        int[] distToW = new int[digraph.V()];
+//        int[] distToV = new int[digraph.V()];
+//        if (w == v) return new int[]{v, 0};
+//        Queue<Integer> qW = new Queue<>();
+//        Queue<Integer> qV = new Queue<>();
+//        markedW[w] = true;
+//        markedV[v] = true;
+//        distToW[w] = 0;
+//        distToV[v] = 0;
+//        qW.enqueue(w);
+//        qV.enqueue(v);
+//        boolean flag = false;
+//        int[] candidate = {-1, -1};
+//        while (!qW.isEmpty() || !qV.isEmpty()) {
+//            Queue<Integer> q = null;
+//            boolean[] marked = null;
+//            int[] distTo = null;
+//
+//            if ((!flag && !qW.isEmpty()) || qV.isEmpty()) {
+//                flag = true;
+//                q = qW;
+//                marked = markedW;
+//                distTo = distToW;
+//            } else if (!qV.isEmpty()) {
+//                flag = false;
+//                q = qV;
+//                marked = markedV;
+//                distTo = distToV;
+//            }
+//            if (q == null || q.isEmpty()) {
+//                return new int[]{-1, -1};
+//            }
+//            int s = q.dequeue();
+//            if (markedW[s] && markedV[s]) {
+//                if (candidate[1] == -1 || candidate[1] > distToV[s] + distToW[s]) {
+//                    candidate = new int[]{s, distToV[s] + distToW[s]};
+//                }
+//            }
+//            for (int i : digraph.adj(s)) {
+//                if (!marked[i]) {
+//                    distTo[i] = distTo[s] + 1;
+//                    marked[i] = true;
+//                    q.enqueue(i);
+//                }
+//            }
+//        }
+//        return candidate;
+//    }
 
     private int[] bfs(Iterable<Integer> sourcesW, Iterable<Integer> sourcesV) {
         boolean[] markedW = new boolean[digraph.V()];
@@ -128,12 +143,12 @@ public class SAP {
             qV.enqueue(s);
         }
         boolean flag = false;
-        int[] candidate = new int[]{-1, -1};
-        while (!qW.isEmpty() && !qV.isEmpty()) {
+        int[] candidate = {-1, -1};
+        while (!qW.isEmpty() || !qV.isEmpty()) {
             Queue<Integer> q = null;
             boolean[] marked = null;
             int[] distTo = null;
-            if (!flag && !qW.isEmpty()) {
+            if ((!flag && !qW.isEmpty()) || qV.isEmpty()) {
                 flag = true;
                 q = qW;
                 marked = markedW;

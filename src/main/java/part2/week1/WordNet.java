@@ -4,6 +4,7 @@ import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.NoSuchElementException;
 
 
@@ -16,7 +17,7 @@ import java.util.NoSuchElementException;
 public class WordNet {
 
     private final ArrayList<String> synsets = new ArrayList<>();
-//    private final ArrayList<List<Integer>> hypernyms = new ArrayList<>();
+    private final HashMap<String, ArrayList<Integer>> synsetNounMap = new HashMap<>();
     private final SAP s;
 
     // constructor takes the name of the two input files
@@ -30,6 +31,11 @@ public class WordNet {
             String[] strArr = str.split(",");
             if (strArr.length < 3) throw new NoSuchElementException();
             synsets.add(strArr[1]);
+            String[] nounArr = strArr[1].split(" ");
+            for (String nStr: nounArr) {
+                synsetNounMap.putIfAbsent(nStr, new ArrayList<>());
+                synsetNounMap.get(nStr).add(Integer.parseInt(strArr[0]));
+            }
         }
 
         Digraph digraph = new Digraph(synsets.size());
@@ -38,11 +44,9 @@ public class WordNet {
             String str = in.readLine();
             String[] strArr = str.split(",");
             if (strArr.length < 1) throw new NoSuchElementException();
-//            List<Integer> subset = new ArrayList<>();
             for (int i = 1; i < strArr.length; i++) {
                 digraph.addEdge(Integer.parseInt(strArr[0]), Integer.parseInt(strArr[i]));
             }
-//            hypernyms.add(subset);
         }
         s = new SAP(digraph);
     }
@@ -55,14 +59,13 @@ public class WordNet {
     // is the word a WordNet noun?
     public boolean isNoun(String word) {
         if (word == null) throw new IllegalArgumentException();
-        return synsets.contains(word);
+        return synsetNounMap.containsKey(word);
     }
 
     // distance between nounA and nounB (defined below)
     public int distance(String nounA, String nounB) {
-        if (nounA == null || nounB == null) throw new IllegalArgumentException();
         if (!isNoun(nounA) || !isNoun(nounB)) throw new IllegalArgumentException();
-        return s.length(findId(nounA), findId(nounB));
+        return s.length(findIds(nounA), findIds(nounB));
     }
 
     // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB
@@ -70,11 +73,10 @@ public class WordNet {
     public String sap(String nounA, String nounB) {
         if (nounA == null || nounB == null) throw new IllegalArgumentException();
         if (!isNoun(nounA) || !isNoun(nounB)) throw new IllegalArgumentException();
-        return synsets.get(s.ancestor(findId(nounA), findId(nounB)));
+        return synsets.get(s.ancestor(findIds(nounA), findIds(nounB)));
     }
 
-    private int findId(String noun) {
-        return synsets.indexOf(noun);
+    private Iterable<Integer> findIds(String noun) {
+        return synsetNounMap.get(noun);
     }
-
 }
