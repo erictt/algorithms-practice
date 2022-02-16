@@ -45,8 +45,8 @@ public class SeamCarver {
             + Math.pow(right.getRed() - left.getRed(), 2)
             + Math.pow(right.getGreen() - left.getGreen(), 2)
             + Math.pow(below.getBlue() - above.getBlue(), 2)
-            + Math.pow(below.getRed() - above.getRed(),2 )
-            + Math.pow(below.getGreen() - above.getGreen(),2 )
+            + Math.pow(below.getRed() - above.getRed(), 2)
+            + Math.pow(below.getGreen() - above.getGreen(), 2)
         );
     }
 
@@ -110,13 +110,11 @@ public class SeamCarver {
 
     // remove horizontal seam from current picture
     public void removeHorizontalSeam(int[] seam) {
-        if (seam == null || seam.length != pic.width() || pic.height() <= 1)
-            throw new IllegalArgumentException();
-        Picture nPic = new Picture(pic.width(), pic.height()-1);
+        verifySeam(seam, width(), height());
+        Picture nPic = new Picture(width(), height()-1);
         for (int i = 0; i < width(); i++) {
             int plusOne = 0;
             for (int j = 0; j < height() - 1; j++) {
-                if (seam[j] < 0 || seam[j] > height() - 1) throw new IllegalArgumentException();
                 if (seam[i] == j) plusOne = 1;
                 nPic.set(i, j, new Color(pic.getRGB(i, j + plusOne)));
             }
@@ -126,13 +124,12 @@ public class SeamCarver {
 
     // remove vertical seam from current picture
     public void removeVerticalSeam(int[] seam) {
-        if (seam == null || seam.length != pic.height() || pic.width() <= 1)
-            throw new IllegalArgumentException();
-        Picture nPic = new Picture(pic.width() - 1, pic.height());
+        verifySeam(seam, height(), width());
+        Picture nPic = new Picture(width() - 1, height());
         for (int j = 0; j < height(); j++) {
             int plusOne = 0;
+            // notice *i* should less than width() - 1 because we add one in the middle
             for (int i = 0; i < width() - 1; i++) {
-                if (seam[j] < 0 || seam[j] > width() - 1) throw new IllegalArgumentException();
                 if (seam[j] == i) plusOne = 1;
                 nPic.set(i, j, new Color(pic.getRGB(i + plusOne, j)));
             }
@@ -148,6 +145,20 @@ public class SeamCarver {
             }
         }
         pic = nPic;
+    }
+
+    private void verifySeam(int[] seam, int len, int limit) {
+        if (seam == null || seam.length != len || seam.length < 1)
+            throw new IllegalArgumentException();
+        // check the first element to save some time.
+        if (seam[0] < 0 || seam[0] >= limit)
+            throw new IllegalArgumentException();
+        // notice here start with 1
+        for (int i = 1; i < seam.length; i++) {
+            // check the current and last i in seam, make sure they differ in |1|.
+            if (seam[i] < 0 || seam[i] >= limit || Math.abs(seam[i] - seam[i-1]) > 1)
+                throw new IllegalArgumentException();
+        }
     }
 
     private int smallestInThreeDouble(double d1, double d2, double d3) {
