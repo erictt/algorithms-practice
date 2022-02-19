@@ -18,6 +18,7 @@ public class BaseballElimination2 {
 
     private final int n;
     private final int len;
+    private boolean[] marked;
     private final HashMap<String, Integer> teamMap = new HashMap<>();
     private final List<Team> teams = new ArrayList<>();
     private final FlowNetwork fn;
@@ -162,25 +163,29 @@ public class BaseballElimination2 {
         }
 
         // search for min cut
-        boolean[] marked = new boolean[len];
-        Queue<Integer> queue = new Queue<>();
-        queue.enqueue(FLOW_SOURCE_INDEX);
-        marked[FLOW_SOURCE_INDEX] = true;
-        while (!queue.isEmpty()) {
-            int i = queue.dequeue();
-            for (FlowEdge a: flowNetwork.adj(i)) {
-                int j = a.other(i);
-                if (marked[j]) continue;
-                if (j == FLOW_TARGET_INDEX && a.flow() == a.capacity()) {
-                    eliminatedTeams.get(team).add(teams.get(i-2).name);
-                    marked[i] = true;
-                    continue;
-                }
-                if (a.flow() < a.capacity()) {
-                    queue.enqueue(j);
-                    marked[j] = true;
-                }
-            }
+//        boolean[] marked = new boolean[len];
+//        Queue<Integer> queue = new Queue<>();
+//        queue.enqueue(FLOW_SOURCE_INDEX);
+//        marked[FLOW_SOURCE_INDEX] = true;
+//        while (!queue.isEmpty()) {
+//            int i = queue.dequeue();
+//            for (FlowEdge a: flowNetwork.adj(i)) {
+//                int j = a.other(i);
+//                if (marked[j]) continue;
+//                if (j == FLOW_TARGET_INDEX && a.flow() == a.capacity()) {
+//                    eliminatedTeams.get(team).add(teams.get(i-2).name);
+//                    marked[i] = true;
+//                    continue;
+//                }
+//                if (a.flow() < a.capacity()) {
+//                    queue.enqueue(j);
+//                    marked[j] = true;
+//                }
+//            }
+//        }
+        for (int v = 2; v < n+2; v++) {
+            if (marked[v])
+                eliminatedTeams.get(team).add(teams.get(v-2).name);
         }
 
         if (eliminatedTeams.get(team).size() != 0)
@@ -189,7 +194,7 @@ public class BaseballElimination2 {
     }
 
     private boolean hasAugmentingPath(FlowNetwork flowNetwork) {
-        boolean[] marked = new boolean[len];
+        marked = new boolean[len]; // the last mark will be used for checking min-cut
         edgeTo = new FlowEdge[len];
 
         Queue<Integer> queue = new Queue<>();
