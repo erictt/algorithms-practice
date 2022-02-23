@@ -11,12 +11,9 @@ public class BoggleSolver
     private final Dict dict;
     // used for recording the position of each word
     // when reaching the length, there is a match
-    private final Set<String> result;
-
     // Initializes the data structure using the given array of strings as the dictionary.
     // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
     public BoggleSolver(String[] dictionary) {
-        result = new HashSet<>();
         dict = new Dict();
 
         for (String str: dictionary) {
@@ -26,46 +23,49 @@ public class BoggleSolver
 
     // Returns the set of all valid words in the given Boggle board, as an Iterable.
     public Iterable<String> getAllValidWords(BoggleBoard board) {
+        Set<String> result = new HashSet<>();
+
         Matrix matrix = new Matrix(board);
         Dict.Node[] next = dict.getNext(null);
+
+        boolean[][] marked = new boolean[board.rows()][board.cols()];
+
         for (int i = 0; i < board.rows(); i++) {
             for (int j = 0; j < board.cols(); j++) {
-                int x = matrix.positions[i][j].id;
-                if (next[x] != null) {
-                    dfs(i, j, matrix, new boolean[board.rows()][board.cols()], next[x]);
+                Position x = matrix.positions[i][j];
+                if (next[x.id] != null) {
+                    dfs(x, marked, next[x.id], result);
                 }
             }
         }
         return result;
     }
 
-    private void dfs(int i, int j, Matrix matrix, boolean[][] marked, Dict.Node node) {
-        marked[i][j] = true;
-        if (node == null) {
-            marked[i][j] = false;
-            return;
-        }
-
-        Position c = matrix.positions[i][j];
+    private void dfs(Position x, boolean[][] marked, Dict.Node node, Set<String> result) {
+        if (node == null)  return;
 
         // if current position is Q, check if the children has U.
         // move to U if exists
-        if (c.id == 'Q'-'A' && dict.getNext(node)['U'-'A'] != null) {
-            node = dict.getNext(node)['U'-'A'];
+        if (x.id == 'Q'-'A') {
+            if (dict.getNext(node)['U'-'A'] != null) {
+                node = dict.getNext(node)['U'-'A'];
+            } else { // the dict doesn't U after Q
+                return;
+            }
         }
+
+        marked[x.i][x.j] = true;
 
         if (dict.isWord(node) && dict.getScore(node) > 0) {
             result.add(dict.getWord(node));
         }
-        for (Position p: matrix.positions[i][j].adj) {
-            if (marked[p.i][p.j]) continue;
-            if (c.id == 'R'-'A' && p.id == 'E'-'A') {
-                System.out.println(c);
-            }
 
-            dfs(p.i, p.j, matrix, marked, dict.getNext(node)[p.id]);
+        for (Position p: x.adj) {
+            if (marked[p.i][p.j]) continue;
+            dfs(p, marked, dict.getNext(node)[p.id], result);
         }
-        marked[i][j] = false;
+
+        marked[x.i][x.j] = false;
     }
 
     // Returns the score of the given word if it is in the dictionary, zero otherwise.
