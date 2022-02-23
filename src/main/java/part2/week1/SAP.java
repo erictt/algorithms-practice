@@ -77,11 +77,15 @@ public class SAP {
     private int[] bfs(Iterable<Integer> sourcesW, Iterable<Integer> sourcesV) {
         boolean[] markedW = new boolean[digraph.V()];
         boolean[] markedV = new boolean[digraph.V()];
+
+        // use to record the shortest path to W or V
         int[] distToW = new int[digraph.V()];
-        int[] distToV = new int[digraph.V()];
+        int[] destToV = new int[digraph.V()];
 
         Queue<Integer> qW = new Queue<>();
         Queue<Integer> qV = new Queue<>();
+
+        // mark all of the sources and dest
         for (int s : sourcesW) {
             markedW[s] = true;
             distToW[s] = 0;
@@ -90,15 +94,19 @@ public class SAP {
         for (int s : sourcesV) {
             if (markedV[s]) return new int[]{s, 0};
             markedV[s] = true;
-            distToV[s] = 0;
+            destToV[s] = 0;
             qV.enqueue(s);
         }
+
+        // flag is used for deciding which queue to pop
         boolean flag = false;
         int[] candidate = {-1, -1};
         while (!qW.isEmpty() || !qV.isEmpty()) {
             Queue<Integer> q = null;
             boolean[] marked = null;
             int[] distTo = null;
+
+            // decide which queue to pop
             if ((!flag && !qW.isEmpty()) || qV.isEmpty()) {
                 flag = true;
                 q = qW;
@@ -108,17 +116,26 @@ public class SAP {
                 flag = false;
                 q = qV;
                 marked = markedV;
-                distTo = distToV;
+                distTo = destToV;
             }
             if (q == null || q.isEmpty()) {
                 return new int[]{-1, -1};
             }
+
+            // pop from the queue
             int s = q.dequeue();
-            if (markedW[s] && markedV[s]) {
-                if (candidate[1] == -1 || candidate[1] > distToV[s] + distToW[s]) {
-                    candidate = new int[]{s, distToV[s] + distToW[s]};
+
+            if (markedW[s] && markedV[s]) { // we have a candidate
+                if (candidate[1] == -1 || candidate[1] > destToV[s] + distToW[s]) {
+                    candidate = new int[]{s, destToV[s] + distToW[s]};
                 }
             }
+
+            // continue to search
+            // it's possible that the candidate is not the shortest path to ancestor
+            // think about the digraph2.txt
+            // 1->2->3->4->5->0 0->1 when searching 1 and 3's common ancestor, we can easy to get 0
+            // but the answer is 3.
             for (int i : digraph.adj(s)) {
                 if (!marked[i]) {
                     distTo[i] = distTo[s] + 1;
