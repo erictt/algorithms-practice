@@ -43,12 +43,8 @@ public class CircularSuffixArray {
             this.start = start;
         }
 
-        int charAtColumn(int d) {
-            return str.charAt((start+d) % str.length());
-        }
-
         int charAt(int i) {
-            return i >= str.length() ? -1 : charAtColumn(i);
+            return i >= str.length() ? -1 : str.charAt((start+i) % str.length());
         }
     }
 
