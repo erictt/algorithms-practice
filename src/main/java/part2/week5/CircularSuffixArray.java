@@ -1,3 +1,5 @@
+package part2.week5;
+
 import edu.princeton.cs.algs4.In;
 
 public class CircularSuffixArray {
@@ -6,18 +8,18 @@ public class CircularSuffixArray {
     private final int length;
     private final int[] mapping;
 
+    private final String str;
+
     public CircularSuffixArray(String s) {
         if (s == null) throw new IllegalArgumentException();
 
         length = s.length();
+        str = s;
 
-        char[][] suffixes = new char[length][length]; // will be sorted in-place
-        char[][] aux = new char[length][length]; // used for sorting
-
+        // instead of constructing a matrix, I used an indexed CircularSuffix array to represent the matrix
+        CircularSuffix[] suffixes = new CircularSuffix[length]; // will be sorted in-place
         for (int i = 0; i < length; i++) {
-            for (int j = 0; j < length; j++) {
-                suffixes[i][j] = s.charAt((i+j) % length);
-            }
+            suffixes[i] = new CircularSuffix(i);
         }
 
         mapping = new int[length];
@@ -31,8 +33,61 @@ public class CircularSuffixArray {
         // https://cs.ericyy.me/algorithms-2/week-3/index.html#key-indexed-counting
         // the tricky part is the `+1` part: count[original[i][x]+1]
         // it's setting where the next char should start with
-        sort(suffixes, aux, mappingAux, 0, length-1, 0);
+        sort(suffixes, 0, length-1, 0);
     }
+
+    // simulate different suffix by constructing it with a start index.
+    private class CircularSuffix {
+        int start;
+
+        CircularSuffix(int start) {
+            this.start = start;
+        }
+
+        int charAtColumn(int d) {
+            return str.charAt((start+d)%str.length());
+        }
+
+        int charAt(int i) {
+            return i >= str.length() ? -1 : charAtColumn(i);
+        }
+    }
+
+    private void sort(CircularSuffix[] suffixes, int start, int end, int column) {
+
+        if (end <= start) return;
+
+        int lt = start, gt = end;
+        int v = suffixes[start].charAt(column);
+        int i = start + 1;
+
+        while (i <= gt) {
+            int t = suffixes[i].charAt(column);
+            if (t < v) {
+                CircularSuffix temp = suffixes[lt];
+                suffixes[lt] = suffixes[i];
+                suffixes[i] = temp;
+                int x = mapping[i];
+                mapping[i] = mapping[lt];
+                mapping[lt] = x;
+                i++;
+                lt++;
+            } else if (t > v) {
+                CircularSuffix temp = suffixes[gt];
+                suffixes[gt] = suffixes[i];
+                suffixes[i] = temp;
+                int x = mapping[i];
+                mapping[i] = mapping[gt];
+                mapping[gt] = x;
+                gt--;
+            } else i++;
+        }
+
+        sort(suffixes, start, lt-1, column);
+        if (v >= 0) sort(suffixes, lt, gt, column+1);
+        sort(suffixes, gt+1, end, column);
+    }
+
 
     private void sort(char[][] suffixes, char[][] aux, int[] mappingAux, int start, int end, int column) {
 
@@ -66,7 +121,7 @@ public class CircularSuffixArray {
             // if there are only two left, iterate it to the end of the column to compare the two
             if (i == 2) {
                 int first = start+count[r];
-                int second = start+count[r+1]-1;
+                int second = first + 1;
 
                 int d = column+1;
                 while (d < length) {
@@ -75,6 +130,8 @@ public class CircularSuffixArray {
                         suffixes[first] = aux[second];
                         mapping[first] = mappingAux[second];
                         mapping[second] = mappingAux[first];
+                        break;
+                    } else if (suffixes[first][d] < suffixes[second][d]) {
                         break;
                     }
                     d++;
@@ -96,7 +153,7 @@ public class CircularSuffixArray {
 
     // returns index of ith sorted suffix
     public int index(int i) {
-        if (i < 0 || i > length) throw new IllegalArgumentException();
+        if (i < 0 || i >= length) throw new IllegalArgumentException();
         return mapping[i];
     }
 
@@ -108,6 +165,7 @@ public class CircularSuffixArray {
         while (in.hasNextLine()) {
             sb.append(in.readLine());
         }
+//        sb = new StringBuilder("BAB");
         CircularSuffixArray csa = new CircularSuffixArray(sb.toString());
         System.out.println(csa.length());
         for (int i = 0; i < sb.length(); i++) {
