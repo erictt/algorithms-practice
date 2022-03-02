@@ -16,13 +16,12 @@ public class CircularSuffixArray {
         mapping = new int[length];
         int[] mappingAux = new int[length]; // used for storing the assigned value temporarily
 
-        char[] charArr = s.toCharArray();
         suffixes = new char[length][length]; // will be sorted in-place
         char[][] aux = new char[length][length]; // used for sorting
 
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
-                suffixes[i][j] = charArr[(i+j) % length];
+                suffixes[i][j] = s.charAt((i+j) % length);
             }
         }
 
@@ -34,10 +33,10 @@ public class CircularSuffixArray {
         // https://cs.ericyy.me/algorithms-2/week-3/index.html#key-indexed-counting
         // the tricky part is the `+1` part: count[original[i][x]+1]
         // it's setting where the next char should start with
-        sort(suffixes, aux, mapping, mappingAux, 0, length-1, 0);
+        sort(aux, mappingAux, 0, length-1, 0);
     }
 
-    private void sort(char[][] suffixes, char[][] aux, int[] mapping, int[] mappingAux, int start, int end, int column) {
+    private void sort(char[][] aux, int[] mappingAux, int start, int end, int column) {
 
         int[] count = new int[R+1];
         for (int i = start; i <= end; i++) {
@@ -51,9 +50,8 @@ public class CircularSuffixArray {
         for (int i = start; i <= end; i++) {
             // since we're counting the next char,
             // in here, if count[a]=2, then aux[0], aux[1] will both be a (assume a = 0)
-            aux[count[suffixes[i][column]]] = suffixes[i];
-            mappingAux[count[suffixes[i][column]]] = mapping[i];
-            count[suffixes[i][column]]++;
+            aux[start+count[suffixes[i][column]]] = suffixes[i];
+            mappingAux[start+count[suffixes[i][column]]++] = mapping[i];
         }
 
         for (int i = start; i <= end; i++) {
@@ -63,7 +61,7 @@ public class CircularSuffixArray {
 
         for (int r = 0; r < R; r++) {
             if (count[r+1] - count[r] > 1 && column < suffixes.length - 1) {
-                sort(suffixes, aux, mapping, mappingAux, start + count[r], start + count[r+1]-1, column+1);
+                sort(aux, mappingAux, start + count[r], start + count[r+1]-1, column+1);
             }
         }
     }
@@ -172,9 +170,10 @@ public class CircularSuffixArray {
         while (in.hasNextLine()) {
             sb.append(in.readLine());
         }
-        CircularSuffixArray csa = new CircularSuffixArray(sb.toString());
+        String s = "ABAAABAABABAAABABABBABBAABBABAABABAAABABBBAAAAAABB";
+        CircularSuffixArray csa = new CircularSuffixArray(s);
         System.out.println(csa.length());
-        for (int i = 0; i < sb.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             System.out.print(csa.index(i));
             System.out.print(" ");
         }

@@ -62,7 +62,8 @@ public class MoveToFront {
     // a is the first node in the linked list
     private static void moveNodeToFirst(Node firstNode, Node current) {
         if (firstNode.c == current.c) return;
-        current.next.previous = current.previous;
+        if (current.next != null)
+            current.next.previous = current.previous;
         current.previous.next = current.next;
         current.next = firstNode;
         current.previous = null;
