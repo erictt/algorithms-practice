@@ -23,7 +23,6 @@ public class CircularSuffixArray {
         }
 
         mapping = new int[length];
-        int[] mappingAux = new int[length]; // used for storing the assigned value temporarily
 
         for (int i = 0; i < length; i++) {
             mapping[i] = i;
@@ -45,7 +44,7 @@ public class CircularSuffixArray {
         }
 
         int charAtColumn(int d) {
-            return str.charAt((start+d)%str.length());
+            return str.charAt((start+d) % str.length());
         }
 
         int charAt(int i) {
@@ -86,64 +85,6 @@ public class CircularSuffixArray {
         sort(suffixes, start, lt-1, column);
         if (v >= 0) sort(suffixes, lt, gt, column+1);
         sort(suffixes, gt+1, end, column);
-    }
-
-
-    private void sort(char[][] suffixes, char[][] aux, int[] mappingAux, int start, int end, int column) {
-
-        int[] count = new int[R+1];
-        for (int i = start; i <= end; i++) {
-            count[suffixes[i][column]+1]++;
-        }
-
-        for (int r = 0; r < R; r++) {
-            count[r+1] += count[r];
-        }
-
-        for (int i = start; i <= end; i++) {
-            // since we're counting the next char,
-            // in here, if count[a]=2, then aux[0], aux[1] will both be a (assume a = 0)
-            aux[start+count[suffixes[i][column]]] = suffixes[i];
-            mappingAux[start+count[suffixes[i][column]]++] = mapping[i];
-        }
-
-        for (int i = start; i <= end; i++) {
-            suffixes[i] = aux[i];
-            mapping[i] = mappingAux[i];
-        }
-
-        for (int r = 0; r < R; r++) {
-
-            int i = count[r + 1] - count[r];
-
-            if (i < 2) continue;
-
-            // if there are only two left, iterate it to the end of the column to compare the two
-            if (i == 2) {
-                int first = start+count[r];
-                int second = first + 1;
-
-                int d = column+1;
-                while (d < length) {
-                    if (suffixes[first][d] > suffixes[second][d]) {
-                        suffixes[second] = aux[first];
-                        suffixes[first] = aux[second];
-                        mapping[first] = mappingAux[second];
-                        mapping[second] = mappingAux[first];
-                        break;
-                    } else if (suffixes[first][d] < suffixes[second][d]) {
-                        break;
-                    }
-                    d++;
-                }
-                continue;
-            }
-
-            // more than two
-            if (column < suffixes.length - 1) {
-                sort(suffixes, aux, mappingAux, start + count[r], start + count[r+1]-1, column+1);
-            }
-        }
     }
 
     // length of s
