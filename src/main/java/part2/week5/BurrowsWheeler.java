@@ -1,5 +1,3 @@
-package part2.week5;
-
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
 

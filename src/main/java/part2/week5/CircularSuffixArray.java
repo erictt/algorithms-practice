@@ -1,5 +1,3 @@
-package part2.week5;
-
 import edu.princeton.cs.algs4.In;
 
 public class CircularSuffixArray {
@@ -60,114 +58,36 @@ public class CircularSuffixArray {
         }
 
         for (int r = 0; r < R; r++) {
+
             int i = count[r + 1] - count[r];
-            if (i < 2) {
-                continue;
-            }
+
+            if (i < 2) continue;
+
+            // if there are only two left, iterate it to the end of the column to compare the two
             if (i == 2) {
                 int first = start+count[r];
                 int second = start+count[r+1]-1;
-                if (! less(suffixes, first, second,column+1)) {
-                    suffixes[second] = aux[first];
-                    suffixes[first] = aux[second];
-                    mapping[first] = mappingAux[second];
-                    mapping[second] = mappingAux[first];
+
+                int d = column+1;
+                while (d < length) {
+                    if (suffixes[first][d] > suffixes[second][d]) {
+                        suffixes[second] = aux[first];
+                        suffixes[first] = aux[second];
+                        mapping[first] = mappingAux[second];
+                        mapping[second] = mappingAux[first];
+                        break;
+                    }
+                    d++;
                 }
-            } else if (column < suffixes.length - 1) {
+                continue;
+            }
+
+            // more than two
+            if (column < suffixes.length - 1) {
                 sort(suffixes, aux, mappingAux, start + count[r], start + count[r+1]-1, column+1);
             }
         }
     }
-
-    private boolean less(char[][] suffixes, int i, int j, int column) {
-        return suffixes[i][column] < suffixes[j][column];
-    }
-
-    // circular suffix array of s
-//    public CircularSuffixArray(String s) {
-//        if (s == null) throw new IllegalArgumentException();
-//
-//        length = s.length();
-//        mapping = new int[length];
-//        mappingAux = new int[length];
-//
-//        char[] charArr = s.toCharArray();
-//        original = new char[length][length];
-//        sorted = new char[length][length];
-//        char[][] aux = new char[length][length];
-//
-//        for (int i = 0; i < length; i++) {
-//            for (int j = 0; j < length; j++) {
-//                original[i][j] = charArr[(i+j)%length];
-//                sorted[i][j] = charArr[(i+j)%length];
-//            }
-//        }
-//
-//        for (int i = 0; i < length; i++) {
-//            mapping[i] = i;
-//        }
-//
-//        // need to loop log_2^N times
-//        int loopTimes = (int)Math.ceil((Math.log(length)/Math.log(2)));
-//        int size = 2;
-//        for (int i = 1; i <= loopTimes; i++) {
-//            int startIndex = 0;
-//            while (startIndex < length) {
-//                int middle = startIndex+size/2-1;
-//                sort(sorted, aux, startIndex, middle, Math.min(middle+size/2, length-1));
-//                startIndex += size;
-//            }
-//
-//            // swap
-//            char[][] temp = sorted;
-//            sorted = aux;
-//            aux = temp;
-//
-//            // swap
-//            int[] tempM = mapping;
-//            mapping = mappingAux;
-//            mappingAux = tempM;
-//
-//            // increase size
-//            size *= 2;
-//        }
-//    }
-
-//    // bottom-up merge sort
-//    private void sort(char[][] suffixes, char[][] aux, int start, int middle, int end) {
-//
-//        if (start == end) return;
-//
-//        int fillIndex = start;
-//        int lIndex = start;
-//        int rIndex = middle + 1;
-//        while (lIndex <= middle && rIndex <= end) {
-//            if (bigger(suffixes[lIndex], suffixes[rIndex])) {
-//                mappingAux[fillIndex] = mapping[rIndex];
-//                aux[fillIndex++] = suffixes[rIndex++];
-//            } else {
-//                mappingAux[fillIndex] = mapping[lIndex];
-//                aux[fillIndex++] = suffixes[lIndex++];
-//            }
-//        }
-//
-//        while (lIndex <= middle) {
-//            mappingAux[fillIndex] = mapping[lIndex];
-//            aux[fillIndex++] = suffixes[lIndex++];
-//        }
-//        while (rIndex <= end) {
-//            mappingAux[fillIndex] = mapping[rIndex];
-//            aux[fillIndex++] = suffixes[rIndex++];
-//        }
-//    }
-
-//    private boolean bigger(char[] a, char[] b) {
-//        int i = 0;
-//        while (a[i] == b[i]) {
-//            i++;
-//        }
-//        return a[i] > b[i];
-//    }
 
     // length of s
     public int length() {
@@ -184,7 +104,6 @@ public class CircularSuffixArray {
     public static void main(String[] args) {
         In in = new In(args[0]);
 
-//        StringBuilder sb = new StringBuilder("CADABRA!ABRA");
         StringBuilder sb = new StringBuilder();
         while (in.hasNextLine()) {
             sb.append(in.readLine());
