@@ -16,7 +16,7 @@ public class SAP {
 
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G) {
-        // this will make the diagraph immutable
+        // this will make the digraph immutable
         digraph = new Digraph(G);
         // TODO miss checking if there is a cycle
     }
