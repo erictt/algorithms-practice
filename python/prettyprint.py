@@ -7,7 +7,7 @@ Created on Tue Dec 11 09:43:47 2018
 """
 
 
-class Solution:
+class practice.MaxAccess:
         # @param A : integer
         # @return a list of list of integers
     def prettyPrint(self, A):
@@ -31,4 +31,4 @@ class Solution:
             print(matrix[i])
 
 
-Solution().prettyPrint(3)
+practice.MaxAccess().prettyPrint(3)
