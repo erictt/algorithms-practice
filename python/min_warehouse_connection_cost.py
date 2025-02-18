@@ -19,16 +19,29 @@ class Solution:
         results = []
 
         for hubs in additionalHubs:
+            hubs_index = [i - 1 for i in hubs]
             total_cost = 0
-            hub_positions = sorted(hubs + [n - 1])  # Add the default hub (n-1) and sort
 
             for i in range(n):
-                min_cost = float("inf")
-                for hub_pos in hub_positions:
-                    if hub_pos >= i:
-                        cost = warehouseCapacity[hub_pos] - warehouseCapacity[i]
-                        min_cost = min(min_cost, cost)  # Simplified logic.
-                total_cost += min_cost
+                if i < hubs_index[0]:
+                    total_cost += (
+                        warehouseCapacity[hubs_index[0]] - warehouseCapacity[i]
+                    )
+                elif hubs_index[0] < i < hubs_index[1]:
+                    total_cost += (
+                        warehouseCapacity[hubs_index[1]] - warehouseCapacity[i]
+                    )
+                elif i > hubs_index[1]:
+                    total_cost += warehouseCapacity[n - 1] - warehouseCapacity[i]
+                    # total_cost += min(
+                    #     warehouseCapacity[i] - warehouseCapacity[hubs_index[1]],
+                    #     warehouseCapacity[n - 1] - warehouseCapacity[i],
+                    # )
+                # elif hubs_index[0] < i < hubs_index[1]:
+                #     total_cost += min(
+                #         warehouseCapacity[i] - warehouseCapacity[hubs_index[0]],
+                #         warehouseCapacity[hubs_index[1]] - warehouseCapacity[i],
+                #     )
             results.append(total_cost)
         return results
 
@@ -37,12 +50,11 @@ class Solution:
 if __name__ == "__main__":
     solution = Solution()
     warehouseCapacity1 = [0, 2, 5, 9, 12, 18]
-    additionalHubs1 = [[1, 4], [0, 2]]
+    additionalHubs1 = [[2, 5], [1, 3]]
     result1 = solution.minWarehouseConnectionCost(warehouseCapacity1, additionalHubs1)
     print(f"Example 1 Output: {result1}")  # Expected: [12, 18]
 
     warehouseCapacity2 = [2, 6, 8, 14]
-    additionalHubs2 = [[0, 1]]
+    additionalHubs2 = [[1, 2]]
     result2 = solution.minWarehouseConnectionCost(warehouseCapacity2, additionalHubs2)
     print(f"Example 2 Output: {result2}")  # Expected: [6]
-
